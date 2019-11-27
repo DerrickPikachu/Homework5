@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Homework5</string>
+    <string name="call_activity2">To activity2</string>
+    <string name="finish_intent">go back</string>
+    <string name="call_activity3">To activity3</string>
+    <string name="call_activity1">To activity1</string>
 </resources>
