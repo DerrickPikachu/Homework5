@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_thrid);
 
         findViewById(R.id.intentBtn).setOnClickListener(this);
         findViewById(R.id.goBackBtn).setOnClickListener(this);
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v.getId() == R.id.intentBtn) {
             Intent toActivity = new Intent();
-            toActivity.setClass(this, SecondActivity.class);
+            toActivity.setClass(this, MainActivity.class);
             startActivity(toActivity);
         }
     }
