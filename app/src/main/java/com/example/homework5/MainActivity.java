@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView txv;
+//    private TextView txv;
     private String record;
+    private LinearLayout showRecord;
     public static final int CALL_ACTIVITY = 1;
 
     @Override
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.intentBtn).setOnClickListener(this);
         findViewById(R.id.goBackBtn).setOnClickListener(this);
 
-        txv = findViewById(R.id.visitedRecord);
+        showRecord = findViewById(R.id.visitedRecord);
 
         Intent father = getIntent();
         String preVisited = father.getStringExtra("record");
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             record = "1";
         }
         else {
-            record = preVisited + "->1";
+            record = preVisited + "1";
         }
-        txv.setText(record);
+//        txv.setText(record);
+
+        CreateComponent.create(record, showRecord, this);
     }
 
     @Override
@@ -55,8 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CALL_ACTIVITY) {
-            record = data.getStringExtra("record") + "->1";
-            txv.setText(record);
+            record = data.getStringExtra("record") + "1";
+//            txv.setText(record);
+            showRecord.removeAllViews();
+            CreateComponent.create(record, showRecord, this);
         }
     }
 }

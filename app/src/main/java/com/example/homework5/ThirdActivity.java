@@ -5,14 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import static com.example.homework5.MainActivity.CALL_ACTIVITY;
 
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView txv;
+//    private TextView txv;
     private String record;
+    private LinearLayout showRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +24,13 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.intentBtn).setOnClickListener(this);
         findViewById(R.id.goBackBtn).setOnClickListener(this);
 
-        txv = findViewById(R.id.visitedRecord);
+        showRecord = findViewById(R.id.visitedRecord);
 
         Intent father = getIntent();
         record = father.getStringExtra("record");
-        record = record + "->3";
-        txv.setText(record);
+        record = record + "3";
+//        txv.setText(record);
+        CreateComponent.create(record, showRecord, this);
     }
 
     @Override
@@ -49,8 +52,10 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CALL_ACTIVITY) {
-            record = data.getStringExtra("record") + "->3";
-            txv.setText(record);
+            record = data.getStringExtra("record") + "3";
+//            txv.setText(record);
+            showRecord.removeAllViews();
+            CreateComponent.create(record, showRecord, this);
         }
     }
 }
